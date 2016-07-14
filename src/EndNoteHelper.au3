@@ -1,3 +1,5 @@
+#include <GUIConstantsEx.au3>
+
 HotKeySet("{PAUSE}", "terminate");
 
 HotKeySet("{SPACE}", "hotKeyPress");
@@ -53,6 +55,8 @@ EndFunc
 
 ; Move the currently active reference to the group offset specified by $groupNo
 Func moveToGroup($groupNo)
+	WinSetState(WinGetHandle("[ACTIVE]"), "", @SW_LOCK) ; Lock the window to prevent flicker
+	
 	Send("!g") ; Open group menu
 	Send("a") ; Skip down to "Add to Group" item
 	Send("{DOWN}") ; Move down x1
@@ -61,6 +65,14 @@ Func moveToGroup($groupNo)
 	Next
 	Send("{ENTER}") ; Press Enter to confirm
 	Send("{DOWN}") ; Move to the next reference
+
+	; BUGFIX: Hide + reshow the groups bar since EndNote doesn't update totals after a copy for some reason
+	Send("!g")
+	Send("h")
+	Send("!g")
+	Send("s")
+	
+	WinSetState(WinGetHandle("[ACTIVE]"), "", @SW_UNLOCK)
 EndFunc
 
 Func terminate()
