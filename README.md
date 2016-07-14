@@ -6,6 +6,9 @@ A simple automation script to move references into groups within EndNote.
 This script installs various hotkeys which assist with EndNote reference screening.
 
 
+**CAVEAT EMPTOR**: This tool is really just a key remapper. It applies the various shortcuts within EndNote to manipulate the library as needed. Since its pretty 'hacky' the user should be aware that there *may* be side-effects.
+
+
 Keys
 ----
 
@@ -42,4 +45,4 @@ If you find any bugs please [contact me](mailto:matt_carter@bond.edu.au) and I'l
 
 Credits
 =======
-Thanks to the [Bond University Center for Research in Evidence-Based Practice](http://www.crebp.net.au) and the [Silk icon set](http://www.famfamfam.com/lab/icons/silk).
+Thanks to the [Bond University Center for Research in Evidence-Based Practice](http://www.crebp.net.au), the [Silk icon set](http://www.famfamfam.com/lab/icons/silk) and the [AutoIt](http://autoitscript.com) scripting language.
