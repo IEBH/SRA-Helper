@@ -28,7 +28,7 @@ Keys
 
 Installation
 ============
-The simplest way to get EndNote-Helper running is to [download the compiled program](EndNoteHelper.exe) and run it.
+The simplest way to get EndNote-Helper running is to [download the compiled program](https://github.com/CREBP/EndNoteHelper/raw/master/EndNoteHelper.exe) and run it.
 
 You will see this icon: ![EndNoteHelper tray icon](src/EndNoteHelper.png) in the system tray when the program is running.
 
