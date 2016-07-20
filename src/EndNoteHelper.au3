@@ -64,7 +64,6 @@ Func moveToGroup($groupNo)
 		Send("{DOWN}") ; Move down $groupNo times to the right group number
 	Next
 	Send("{ENTER}") ; Press Enter to confirm
-	Send("{DOWN}") ; Move to the next reference
 
 	; BUGFIX: Hide + reshow the groups bar since EndNote doesn't update totals after a copy for some reason
 	Send("!g")
