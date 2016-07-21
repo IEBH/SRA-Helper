@@ -21,6 +21,8 @@ HotKeySet("{NUMPAD0}", "hotKeyPress");
 HotKeySet("{NUMPAD4}", "hotKeyPress");
 HotKeySet("4", "hotKeyPress");
 
+HotKeySet("{NUMPAD9}", "hotKeyPress");
+HotKeySet("\", "hotKeyPress");
 
 While 1
 	Sleep(200)
@@ -51,6 +53,9 @@ Func hotKeyPress()
 		Case "{NUMPAD0}", "{NUMPAD4}", "4"
 			moveToGroup(4)
 			
+		case "{NUMPAD9}", "\"
+			searchScholar()
+			
 		Case Else
 			MsgBox(48, "EndNote Helper", "Unknown key sequence: " & @HotKeyPressed)
 	EndSwitch
@@ -79,6 +84,27 @@ Func moveToGroup($groupNo)
 	sleep(100)
 	_SendMessage($endNoteHwnd, $WM_SETREDRAW, 1) ; Unlock redrawing of the window
 	_WinAPI_RedrawWindow($endNoteHwnd, 0, 0, BitOr($RDW_ERASE, $RDW_FRAME, $RDW_INVALIDATE, $RDW_ALLCHILDREN)) ; Force total window repaint
+EndFunc
+
+Func searchScholar()
+	Send("^k") ; Copy ref to clipboard via EndNote
+
+	Local $ref = ClipGet() ; Extract copied reference from keyboard
+	
+	; Tidy up ref so its just the title
+	Local $refExtracted = StringRegExpReplace($ref, '^.+"(.+?)".*', '$1')
+	$refExtracted = StringRegExpReplace($refExtracted, '^\s+', '')
+	$refExtracted = StringRegExpReplace($refExtracted, '\s+$', '')
+
+	if ($refExtracted = "") Then
+		MsgBox(16, "EndNote-Helper", "Sorry but I can't understand that reference format. Make sure 'Annotated' is selected as the reference format")
+	Else
+		; Make the ref URL ready
+		Local $refExtractedURL = StringReplace($refExtracted, " ", "+")
+		$refExtractedURL = StringRegExpReplace($refExtractedURL, "[\.]", "")
+		
+		ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
+	EndIf
 EndFunc
 
 Func terminate()
