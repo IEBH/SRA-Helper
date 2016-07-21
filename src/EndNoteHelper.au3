@@ -1,4 +1,7 @@
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
+#include <WindowsConstants.au3>
+#include <WinApi.au3>
 
 HotKeySet("{PAUSE}", "terminate");
 
@@ -55,7 +58,9 @@ EndFunc
 
 ; Move the currently active reference to the group offset specified by $groupNo
 Func moveToGroup($groupNo)
-	WinSetState(WinGetHandle("[ACTIVE]"), "", @SW_LOCK) ; Lock the window to prevent flicker
+	Local $endNoteHwnd = WinGetHandle("[ACTIVE]")
+
+	_SendMessage($endNoteHwnd, $WM_SETREDRAW, 0) ; Lock redrawing of the window to prevent flicker
 	
 	Send("!g") ; Open group menu
 	Send("a") ; Skip down to "Add to Group" item
@@ -70,8 +75,10 @@ Func moveToGroup($groupNo)
 	Send("h")
 	Send("!g")
 	Send("s")
-	
-	WinSetState(WinGetHandle("[ACTIVE]"), "", @SW_UNLOCK)
+
+	sleep(100)
+	_SendMessage($endNoteHwnd, $WM_SETREDRAW, 1) ; Unlock redrawing of the window
+	_WinAPI_RedrawWindow($endNoteHwnd, 0, 0, BitOr($RDW_ERASE, $RDW_FRAME, $RDW_INVALIDATE, $RDW_ALLCHILDREN)) ; Force total window repaint
 EndFunc
 
 Func terminate()
