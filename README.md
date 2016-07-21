@@ -12,21 +12,14 @@ This script installs various hotkeys which assist with EndNote reference screeni
 Keys
 ----
 
-| Key           | Description                    |
-|---------------|--------------------------------|
-| `Space bar`   | Move reference to first group  |
-| `Num pad 1`   | "                              |
-| `Number 1`    | "                              |
-| `Left arrow`  | Move reference to second group |
-| `Num pad 2`   | "                              |
-| `Number 2`    | "                              |
-| `Right arrow` | Move reference to third group  |
-| `Num pad 3`   | "                              |
-| `Number 3`    | "                              |
-| `Num pad 0`   | Move reference to fourth group |
-| `Num pad 4`   | "                              |
-| `Number 4`    | "                              |
-| `Pause`       | Exit EndNote-Helper            |
+| Key                 | Description                                 |
+|---------------------|---------------------------------------------|
+| `1` \ `Space bar`   | Move reference to first group               |
+| `2` \ `Left arrow`  | Move reference to second group              |
+| `3` \ `Right arrow` | Move reference to third group               |
+| `4` \ `0`           | Move reference to fourth group              |
+| `\`                 | Search the refernce title on Google Scholar |
+| `Pause`             | Exit EndNote-Helper                         |
 
 
 Installation
