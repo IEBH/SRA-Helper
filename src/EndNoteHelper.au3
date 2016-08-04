@@ -87,24 +87,38 @@ Func moveToGroup($groupNo)
 EndFunc
 
 Func searchScholar()
+	Local $clip;
+
+	ClipPut("") ; Clear the clipboard so we know we can check against blanks
+	Sleep(100) ; Wait for Clipboard to unlock (for some reason it takes time to do this)
+
 	Send("^k") ; Copy ref to clipboard via EndNote
 
-	Local $ref = ClipGet() ; Extract copied reference from keyboard
-	
-	; Tidy up ref so its just the title
-	Local $refExtracted = StringRegExpReplace($ref, '^.+"(.+?)".*', '$1')
-	$refExtracted = StringRegExpReplace($refExtracted, '^\s+', '')
-	$refExtracted = StringRegExpReplace($refExtracted, '\s+$', '')
-
-	if ($refExtracted = "") Then
-		MsgBox(16, "EndNote-Helper", "Sorry but I can't understand that reference format. Make sure 'Annotated' is selected as the reference format")
-	Else
-		; Make the ref URL ready
-		Local $refExtractedURL = StringReplace($refExtracted, " ", "+")
-		$refExtractedURL = StringRegExpReplace($refExtractedURL, "[\.]", "")
+	; Keep asking the clipboard for contents until it returns non-null (only for 10 tries though)
+	for $i = 1 to 10
+		$clip = ClipGet() ; Extract copied reference from keyboard
+		if ($clip <> "") Then ExitLoop
+		Sleep(100) ; Sleep for 100ms
+	Next
 		
-		ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
-	EndIf
+	if ($clip == "") Then
+		MsgBox(16, "EndNote-Helper", "EndNote failed to provide a reference when asked. Maybe you don't have anything selected?")
+	Else
+		; Tidy up ref so its just the title
+		Local $refExtracted = StringRegExpReplace($clip, '^.+"(.+?)".*', '$1')
+		$refExtracted = StringRegExpReplace($refExtracted, '^\s+', '')
+		$refExtracted = StringRegExpReplace($refExtracted, '\s+$', '')
+
+		if ($refExtracted = "") Then
+			MsgBox(16, "EndNote-Helper", "Sorry but I can't understand that reference format. Make sure 'Annotated' is selected as the reference format")
+		Else
+			; Make the ref URL ready
+			Local $refExtractedURL = StringReplace($refExtracted, " ", "+")
+			$refExtractedURL = StringRegExpReplace($refExtractedURL, "[\.]", "")
+			
+			ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
+		EndIf
+	EndIf	
 EndFunc
 
 Func terminate()
