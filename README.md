@@ -20,6 +20,7 @@ Keys
 | `4` \ `0`           | Move reference to fourth group              |
 | `\`                 | Search the refernce title on Google Scholar |
 | `Pause`             | Exit EndNote-Helper                         |
+| `End`               | Debugging information                       |
 
 
 Installation
