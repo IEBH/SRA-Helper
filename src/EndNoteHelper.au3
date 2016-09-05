@@ -4,6 +4,7 @@
 #include <WinApi.au3>
 
 HotKeySet("{PAUSE}", "terminate");
+HotKeySet("{END}", "debug");
 
 HotKeySet("{SPACE}", "hotKeyPress");
 HotKeySet("{NUMPAD1}", "hotKeyPress");
@@ -32,7 +33,8 @@ WEnd
 ; AutoIt cannot handle function parameters so this function takes the pressed keycode and works out where to redirect to
 Func hotKeyPress()
 	; Do not operate on non-EndNote windows (or non-list EndNote windows)
-	if not StringRegExp(WinGetTitle("[ACTIVE]"), "^EndNote X7.*\.enl\]$") then
+	; NOTE: (?i) indicates case insensitive from that point onwards unless its in a group
+	if not StringRegExp(WinGetTitle("[ACTIVE]"), "^EndNote X7.*\.(?i)enl\]$") then
 		; Send the original space key since we hijacked it
 		HotKeySet(@HotKeyPressed)
 		Send(@HotKeyPressed)
@@ -87,7 +89,7 @@ Func moveToGroup($groupNo)
 EndFunc
 
 Func searchScholar()
-	Local $clip;
+	Local $clip
 
 	ClipPut("") ; Clear the clipboard so we know we can check against blanks
 	Sleep(100) ; Wait for Clipboard to unlock (for some reason it takes time to do this)
@@ -119,6 +121,20 @@ Func searchScholar()
 			ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
 		EndIf
 	EndIf	
+EndFunc
+
+Func debug()
+	Local $output
+
+	$output = "Active Window title is [" & WinGetTitle("[ACTIVE]") & "]" & Chr(10) & Chr(10)
+		
+	if StringRegExp(WinGetTitle("[ACTIVE]"), "^EndNote X7.*\.(?i)enl\]$") then
+		$output &= "Which EndNote-Helper WILL handle"
+	else
+		$output &= "Which EndNote-Helper WILL NOT handle"
+	EndIf 
+
+	MsgBox(64, "EndNote-Helper", $output)
 EndFunc
 
 Func terminate()
