@@ -34,7 +34,7 @@ WEnd
 Func hotKeyPress()
 	; Do not operate on non-EndNote windows (or non-list EndNote windows)
 	; NOTE: (?i) indicates case insensitive from that point onwards unless its in a group
-	if not StringRegExp(WinGetTitle("[ACTIVE]"), "^EndNote X7.*\.(?i)enl\]$") then
+	If IsEndNoteWIndow() = 0 then
 		; Send the original space key since we hijacked it
 		HotKeySet(@HotKeyPressed)
 		Send(@HotKeyPressed)
@@ -97,13 +97,13 @@ Func searchScholar()
 	Send("^k") ; Copy ref to clipboard via EndNote
 
 	; Keep asking the clipboard for contents until it returns non-null (only for 10 tries though)
-	for $i = 1 to 10
+	For $i = 1 to 10
 		$clip = ClipGet() ; Extract copied reference from keyboard
-		if ($clip <> "") Then ExitLoop
+		If ($clip <> "") Then ExitLoop
 		Sleep(100) ; Sleep for 100ms
 	Next
 		
-	if ($clip == "") Then
+	If ($clip == "") Then
 		MsgBox(16, "EndNote-Helper", "EndNote failed to provide a reference when asked. Maybe you don't have anything selected?")
 	Else
 		; Tidy up ref so its just the title
@@ -111,7 +111,7 @@ Func searchScholar()
 		$refExtracted = StringRegExpReplace($refExtracted, '^\s+', '')
 		$refExtracted = StringRegExpReplace($refExtracted, '\s+$', '')
 
-		if ($refExtracted = "") Then
+		If ($refExtracted = "") Then
 			MsgBox(16, "EndNote-Helper", "Sorry but I can't understand that reference format. Make sure 'Annotated' is selected as the reference format")
 		Else
 			; Make the ref URL ready
@@ -123,16 +123,39 @@ Func searchScholar()
 	EndIf	
 EndFunc
 
-Func debug()
-	Local $output
-
-	$output = "Active Window title is [" & WinGetTitle("[ACTIVE]") & "]" & Chr(10) & Chr(10)
+; Returns whether the currently active window looks like an EndNote library view
+; This function will also scan all MDI children
+; @return Number 0=Not an EndNote window, 1=Is an EndNote list thats maximized, 2=MDI child list
+Func IsEndNoteWindow()
+	Local $title = WinGetTitle("[ACTIVE]")
+	If StringRegExp($title, "^EndNote X7.*\.(?i)enl\]$") Then
+		Return 1
+	ElseIf $title = "EndNote X7" Then
+		Local $activeChild = _WinAPI_GetWindow(WinGetHandle("[ACTIVE]"), $GW_CHILD)
+		If Not $activeChild Then Return false
 		
-	if StringRegExp(WinGetTitle("[ACTIVE]"), "^EndNote X7.*\.(?i)enl\]$") then
-		$output &= "Which EndNote-Helper WILL handle"
-	else
+		Local $childText = WinGetText($activeChild)
+		If Not $childText Then Return false
+		
+		If StringRegExp($childText, "^.*\.(?i)enl\n") Then Return 2
+		
+		Return 0
+	EndIf
+EndFunc
+
+Func debug()
+	Local $output = "Active Window title is [" & WinGetTitle("[ACTIVE]") & "]" & Chr(10) & Chr(10)
+	Local $isEndNote = IsEndNoteWindow()
+	
+	If $isEndNote = 0 Then
 		$output &= "Which EndNote-Helper WILL NOT handle"
-	EndIf 
+	ElseIf $isEndNote = 1 Then
+		$output &= "Which EndNote-Helper WILL handle (maximized list view)"
+	ElseIf $isEndNote = 2 Then
+		$output &= "Which EndNote-Helper WILL handle (restored MDI child list view)"
+	Else
+		$output &= "Which EndNote-Helper WILL handle (unknown response)"
+	EndIf
 
 	MsgBox(64, "EndNote-Helper", $output)
 EndFunc
