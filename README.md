@@ -4,7 +4,6 @@ EndNote-Helper
 <p align="center"><a href="https://github.com/CREBP/EndNoteHelper/raw/master/EndNoteHelper.exe">
   <img src="https://raw.githubusercontent.com/CREBP/EndNoteHelper/master/src/img/download.png" alt="Download EndNote-Helper"/>
 </a></p>
-<br><br>
 
 A simple automation script to move references into groups within EndNote.
 
