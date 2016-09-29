@@ -1,29 +1,34 @@
 #include <GUIConstantsEx.au3>
 #include <SendMessage.au3>
+#include <TrayConstants.au3>
 #include <WindowsConstants.au3>
 #include <WinApi.au3>
 
-HotKeySet("{PAUSE}", "terminate");
-HotKeySet("{END}", "debug");
+HotKeySet("{PAUSE}", "terminate")
+HotKeySet("{END}", "debug")
 
-HotKeySet("{SPACE}", "hotKeyPress");
-HotKeySet("{NUMPAD1}", "hotKeyPress");
-HotKeySet("1", "hotKeyPress");
+HotKeySet("{SPACE}", "hotKeyPress")
+HotKeySet("{NUMPAD1}", "hotKeyPress")
+HotKeySet("1", "hotKeyPress")
 
-HotKeySet("{LEFT}", "hotKeyPress");
-HotKeySet("{NUMPAD2}", "hotKeyPress");
-HotKeySet("2", "hotKeyPress");
+HotKeySet("{LEFT}", "hotKeyPress")
+HotKeySet("{NUMPAD2}", "hotKeyPress")
+HotKeySet("2", "hotKeyPress")
 
-HotKeySet("{RIGHT}", "hotKeyPress");
-HotKeySet("{NUMPAD3}", "hotKeyPress");
-HotKeySet("3", "hotKeyPress");
+HotKeySet("{RIGHT}", "hotKeyPress")
+HotKeySet("{NUMPAD3}", "hotKeyPress")
+HotKeySet("3", "hotKeyPress")
 
-HotKeySet("{NUMPAD0}", "hotKeyPress");
-HotKeySet("{NUMPAD4}", "hotKeyPress");
-HotKeySet("4", "hotKeyPress");
+HotKeySet("{NUMPAD0}", "hotKeyPress")
+HotKeySet("{NUMPAD4}", "hotKeyPress")
+HotKeySet("4", "hotKeyPress")
 
-HotKeySet("{NUMPAD9}", "hotKeyPress");
-HotKeySet("\", "hotKeyPress");
+HotKeySet("{NUMPAD9}", "hotKeyPress")
+HotKeySet("\", "hotKeyPress")
+
+HotKeySet("{NUMPADDIV}", "hotKeyPress")
+HotKeySet("{NUMPADMULT}", "hotKeyPress")
+HotKeySet("{NUMPADSUB}", "hotKeyPress")
 
 While 1
 	Sleep(200)
@@ -55,8 +60,15 @@ Func hotKeyPress()
 		Case "{NUMPAD0}", "{NUMPAD4}", "4"
 			moveToGroup(4)
 			
-		case "{NUMPAD9}", "\"
-			searchScholar()
+		case "{NUMPADDIV}"
+			searchRef("bond")
+			
+		case "{NUMPAD9}", "\", "{NUMPADMULT}"
+			searchRef("scholar")
+
+		case "{NUMPADSUB}"
+			searchRef("clipboard")
+			TrayTip("EndNote-Helper", "Copied seach to clipboard", 2, $TIP_ICONASTERISK + $TIP_NOSOUND)
 			
 		Case Else
 			MsgBox(48, "EndNote Helper", "Unknown key sequence: " & @HotKeyPressed)
@@ -88,7 +100,7 @@ Func moveToGroup($groupNo)
 	_WinAPI_RedrawWindow($endNoteHwnd, 0, 0, BitOr($RDW_ERASE, $RDW_FRAME, $RDW_INVALIDATE, $RDW_ALLCHILDREN)) ; Force total window repaint
 EndFunc
 
-Func searchScholar()
+Func searchRef($method)
 	Local $clip
 
 	ClipPut("") ; Clear the clipboard so we know we can check against blanks
@@ -118,7 +130,14 @@ Func searchScholar()
 			Local $refExtractedURL = StringReplace($refExtracted, " ", "+")
 			$refExtractedURL = StringRegExpReplace($refExtractedURL, "[\.]", "")
 			
-			ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
+			Switch String($method)
+				Case "scholar"
+					ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
+				Case "bond"
+					ShellExecute("http://apac-tc.hosted.exlibrisgroup.com/primo_library/libweb/action/dlSearch.do?institution=61BON&vid=BOND&tab=default_tab&search_scope=all_resources&mode=Basic&displayMode=full&bulkSize=50&highlight=true&dum=true&query=any%2Ccontains%2C" & $refExtractedURL & "&displayField=all&pcAvailabiltyMode=false&s.cmd=addFacetValueFilters(ContentType%2CNewspaper+Article%2Ct%7CContentType%2CBook+Review%2Ct%7CContentType%2CTrade+Publication%2Ct)")
+				Case "clipboard"
+					ClipPut($refExtracted)
+			EndSwitch
 		EndIf
 	EndIf	
 EndFunc
