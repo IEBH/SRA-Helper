@@ -40,7 +40,7 @@ Simply hit any of the above [keys](#keys) to run that function. The keys will **
 
 Bugs
 ====
-If you find any bugs please [contact me](mailto:matt_carter@bond.edu.au) and I'll do my best to address them.
+If you find any bugs please [contact the developer](mailto:matt_carter@bond.edu.au) and we will do our best to address them.
 
 
 Credits
