@@ -5,7 +5,7 @@ EndNote-Helper
   <img src="https://raw.githubusercontent.com/CREBP/EndNoteHelper/master/src/img/download.png" alt="Download EndNote-Helper"/>
 </a></p>
 
-A simple automation script to move references into groups within EndNote.
+A simple automation script to move references into groups within EndNote 7 or 8.
 
 This script installs various hotkeys which assist with EndNote reference screening.
 
