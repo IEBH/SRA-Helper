@@ -147,7 +147,7 @@ EndFunc
 ; @return Number 0=Not an EndNote window, 1=Is an EndNote list thats maximized, 2=MDI child list
 Func IsEndNoteWindow()
 	Local $title = WinGetTitle("[ACTIVE]")
-	If StringRegExp($title, "^EndNote X7.*\.(?i)enl\]$") Then
+	If StringRegExp($title, "^EndNote X[78].*\.(?i)enl\]$") Then
 		Return 1
 	ElseIf $title = "EndNote X7" Then
 		Local $activeChild = _WinAPI_GetWindow(WinGetHandle("[ACTIVE]"), $GW_CHILD)
