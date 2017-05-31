@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <SendMessage.au3>
+#include <StringConstants.au3>
 #include <TrayConstants.au3>
 #include <WindowsConstants.au3>
 #include <WinApi.au3>
@@ -29,6 +30,7 @@ HotKeySet("\", "hotKeyPress")
 HotKeySet("{NUMPADDIV}", "hotKeyPress")
 HotKeySet("{NUMPADMULT}", "hotKeyPress")
 HotKeySet("{NUMPADSUB}", "hotKeyPress")
+HotKeySet("{NUMPADADD}", "hotKeyPress")
 
 While 1
 	Sleep(200)
@@ -67,6 +69,9 @@ Func hotKeyPress()
 			searchRef("scholar")
 
 		case "{NUMPADSUB}"
+			searchRef("pubmed")
+			
+		case "{NUMPADADD}"
 			searchRef("clipboard")
 			TrayTip("EndNote-Helper", "Copied seach to clipboard", 2, $TIP_ICONASTERISK + $TIP_NOSOUND)
 			
@@ -119,9 +124,11 @@ Func searchRef($method)
 		MsgBox(16, "EndNote-Helper", "EndNote failed to provide a reference when asked. Maybe you don't have anything selected?")
 	Else
 		; Tidy up ref so its just the title
-		Local $refExtracted = StringRegExpReplace($clip, '^.+"(.+?)".*', '$1')
-		$refExtracted = StringRegExpReplace($refExtracted, '^\s+', '')
-		$refExtracted = StringRegExpReplace($refExtracted, '\s+$', '')
+ 		Local $refExtracted = StringStripCR($clip) ; Remove all Chr(13)
+		$refExtracted = StringReplace($refExtracted, Chr(10), '') ; Remove remaining windows CR junk
+		$refExtracted = StringRegExpReplace($refExtracted, '^.+"(.+?)".*', '$1') ; Scrap everything not in speachmarks
+		$refExtracted = StringStripWS($refExtracted, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES) ; Remove fore / aft / double whitespace
+		$refExtracted = StringRegExpReplace($refExtracted, '\.$', '') ; Remove final punctuation from string
 
 		If ($refExtracted = "") Then
 			MsgBox(16, "EndNote-Helper", "Sorry but I can't understand that reference format. Make sure 'Annotated' is selected as the reference format")
@@ -135,6 +142,8 @@ Func searchRef($method)
 					ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
 				Case "bond"
 					ShellExecute("http://apac-tc.hosted.exlibrisgroup.com/primo_library/libweb/action/dlSearch.do?institution=61BON&vid=BOND&tab=default_tab&search_scope=all_resources&mode=Basic&displayMode=full&bulkSize=50&highlight=true&dum=true&query=any%2Ccontains%2C" & $refExtractedURL & "&displayField=all&pcAvailabiltyMode=false&s.cmd=addFacetValueFilters(ContentType%2CNewspaper+Article%2Ct%7CContentType%2CBook+Review%2Ct%7CContentType%2CTrade+Publication%2Ct)")
+				Case "pubmed"
+					ShellExecute("https://www.ncbi.nlm.nih.gov/pubmed/?term=" & $refExtractedURL)
 				Case "clipboard"
 					ClipPut($refExtracted)
 			EndSwitch
