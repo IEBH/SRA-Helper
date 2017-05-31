@@ -19,9 +19,10 @@ Keys
 | `2` \ `Left arrow`  | Move reference to second group                          |
 | `3` \ `Right arrow` | Move reference to third group                           |
 | `4` \ `0`           | Move reference to fourth group                          |
-| `Numpad *`          | Search the refernce title on via Bond Library search    |
-| `Numpad /`          | Search the refernce title on Google Scholar             |
-| `Numpad -`          | Copy a searchable version of the title to the clipboard |
+| `Numpad *`          | Search the reference title with Bond Library search     |
+| `Numpad /`          | Search the reference title with Google Scholar          |
+| `Numpad -`          | Search the reference title with PubMed                  |
+| `Numpad +`          | Copy a searchable version of the title to the clipboard |
 | `Pause`             | Exit EndNote-Helper                                     |
 | `End`               | Debugging information                                   |
 
