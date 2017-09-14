@@ -116,7 +116,7 @@ Func searchRef($method)
 	; Keep asking the clipboard for contents until it returns non-null (only for 10 tries though)
 	For $i = 1 to 10
 		$clip = ClipGet() ; Extract copied reference from keyboard
-		If ($clip <> "") Then ExitLoop0
+		If ($clip <> "") Then ExitLoop
 		Sleep(100) ; Sleep for 100ms
 	Next
 		
