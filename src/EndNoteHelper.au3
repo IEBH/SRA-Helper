@@ -116,7 +116,7 @@ Func searchRef($method)
 	; Keep asking the clipboard for contents until it returns non-null (only for 10 tries though)
 	For $i = 1 to 10
 		$clip = ClipGet() ; Extract copied reference from keyboard
-		If ($clip <> "") Then ExitLoop
+		If ($clip <> "") Then ExitLoop0
 		Sleep(100) ; Sleep for 100ms
 	Next
 		
@@ -156,7 +156,7 @@ EndFunc
 ; @return Number 0=Not an EndNote window, 1=Is an EndNote list thats maximized, 2=MDI child list
 Func IsEndNoteWindow()
 	Local $title = WinGetTitle("[ACTIVE]")
-	If StringRegExp($title, "^EndNote X[78].*\.(?i)enl\]$") Then
+	If StringRegExp($title, "^EndNote X[78] - \[.*\]$") Then
 		Return 1
 	ElseIf $title = "EndNote X7" Then
 		Local $activeChild = _WinAPI_GetWindow(WinGetHandle("[ACTIVE]"), $GW_CHILD)
