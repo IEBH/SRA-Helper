@@ -44,8 +44,8 @@ Func hotKeyPress()
 		HotKeySet(@HotKeyPressed)
 		Send(@HotKeyPressed)
 		HotKeySet(@HotKeyPressed, "hotKeyPress");
-		return 
-	EndIf 
+		return
+	EndIf
 
 	Switch @HotKeyPressed
 		Case "{SPACE}", "{NUMPAD1}", "1"
@@ -59,17 +59,17 @@ Func hotKeyPress()
 
 		Case "{NUMPAD0}", "{NUMPAD4}", "4"
 			moveToGroup(4)
-			
+
 		case "{NUMPADDIV}"
-			searchRef("bond")
-			
+			searchRef("institution")
+
 		case "{NUMPAD9}", "\", "{NUMPADMULT}"
 			searchRef("scholar")
 
 		case "{NUMPADSUB}"
 			searchRef("clipboard")
 			TrayTip("EndNote-Helper", "Copied seach to clipboard", 2, $TIP_ICONASTERISK + $TIP_NOSOUND)
-			
+
 		Case Else
 			MsgBox(48, "EndNote Helper", "Unknown key sequence: " & @HotKeyPressed)
 	EndSwitch
@@ -80,7 +80,7 @@ Func moveToGroup($groupNo)
 	Local $endNoteHwnd = WinGetHandle("[ACTIVE]")
 
 	_SendMessage($endNoteHwnd, $WM_SETREDRAW, 0) ; Lock redrawing of the window to prevent flicker
-	
+
 	Send("!g") ; Open group menu
 	Send("a") ; Skip down to "Add to Group" item
 	Send("{DOWN}") ; Move down x1
@@ -114,7 +114,7 @@ Func searchRef($method)
 		If ($clip <> "") Then ExitLoop
 		Sleep(100) ; Sleep for 100ms
 	Next
-		
+
 	If ($clip == "") Then
 		MsgBox(16, "EndNote-Helper", "EndNote failed to provide a reference when asked. Maybe you don't have anything selected?")
 	Else
@@ -129,17 +129,22 @@ Func searchRef($method)
 			; Make the ref URL ready
 			Local $refExtractedURL = StringReplace($refExtracted, " ", "+")
 			$refExtractedURL = StringRegExpReplace($refExtractedURL, "[\.]", "")
-			
+
 			Switch String($method)
 				Case "scholar"
 					ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
-				Case "bond"
+				Case "institution"
+					; @ifdef BOND
 					ShellExecute("http://apac-tc.hosted.exlibrisgroup.com/primo_library/libweb/action/dlSearch.do?institution=61BON&vid=BOND&tab=default_tab&search_scope=all_resources&mode=Basic&displayMode=full&bulkSize=50&highlight=true&dum=true&query=any%2Ccontains%2C" & $refExtractedURL & "&displayField=all&pcAvailabiltyMode=false&s.cmd=addFacetValueFilters(ContentType%2CNewspaper+Article%2Ct%7CContentType%2CBook+Review%2Ct%7CContentType%2CTrade+Publication%2Ct)")
+					; @endif
+					; @ifdef MONASH
+					ShellExecute("http://monash.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&vid=MON&vl%281UIStartWith0%29=contains&vl%28freeText0%29=" & $refExtractedURL)
+					; @endif
 				Case "clipboard"
 					ClipPut($refExtracted)
 			EndSwitch
 		EndIf
-	EndIf	
+	EndIf
 EndFunc
 
 ; Returns whether the currently active window looks like an EndNote library view
@@ -152,12 +157,12 @@ Func IsEndNoteWindow()
 	ElseIf $title = "EndNote X7" Then
 		Local $activeChild = _WinAPI_GetWindow(WinGetHandle("[ACTIVE]"), $GW_CHILD)
 		If Not $activeChild Then Return false
-		
+
 		Local $childText = WinGetText($activeChild)
 		If Not $childText Then Return false
-		
+
 		If StringRegExp($childText, "^.*\.(?i)enl\n") Then Return 2
-		
+
 		Return 0
 	EndIf
 EndFunc
@@ -165,7 +170,7 @@ EndFunc
 Func debug()
 	Local $output = "Active Window title is [" & WinGetTitle("[ACTIVE]") & "]" & Chr(10) & Chr(10)
 	Local $isEndNote = IsEndNoteWindow()
-	
+
 	If $isEndNote = 0 Then
 		$output &= "Which EndNote-Helper WILL NOT handle"
 	ElseIf $isEndNote = 1 Then
