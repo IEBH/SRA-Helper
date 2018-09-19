@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/CREBP/SRA-Helper/issues"
   },
-  "homepage": "https://github.com/CREBP/SRA-Helper#readme"
+  "homepage": "https://github.com/CREBP/SRA-Helper#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-preprocess": "^3.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-util": "^3.0.8",
+    "temp": "^0.8.3"
+  }
 }
