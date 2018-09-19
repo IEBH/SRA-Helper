@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <SendMessage.au3>
+#include <StringConstants.au3>
 #include <TrayConstants.au3>
 #include <WindowsConstants.au3>
 #include <WinApi.au3>
@@ -29,6 +30,7 @@ HotKeySet("\", "hotKeyPress")
 HotKeySet("{NUMPADDIV}", "hotKeyPress")
 HotKeySet("{NUMPADMULT}", "hotKeyPress")
 HotKeySet("{NUMPADSUB}", "hotKeyPress")
+HotKeySet("{NUMPADADD}", "hotKeyPress")
 
 While 1
 	Sleep(200)
@@ -67,6 +69,9 @@ Func hotKeyPress()
 			searchRef("scholar")
 
 		case "{NUMPADSUB}"
+			searchRef("pubmed")
+			
+		case "{NUMPADADD}"
 			searchRef("clipboard")
 			TrayTip("SRA-Helper", "Copied seach to clipboard", 2, $TIP_ICONASTERISK + $TIP_NOSOUND)
 
@@ -119,9 +124,11 @@ Func searchRef($method)
 		MsgBox(16, "SRA-Helper", "EndNote failed to provide a reference when asked. Maybe you don't have anything selected?")
 	Else
 		; Tidy up ref so its just the title
-		Local $refExtracted = StringRegExpReplace($clip, '^.+"(.+?)".*', '$1')
-		$refExtracted = StringRegExpReplace($refExtracted, '^\s+', '')
-		$refExtracted = StringRegExpReplace($refExtracted, '\s+$', '')
+ 		Local $refExtracted = StringStripCR($clip) ; Remove all Chr(13)
+		$refExtracted = StringReplace($refExtracted, Chr(10), '') ; Remove remaining windows CR junk
+		$refExtracted = StringRegExpReplace($refExtracted, '^.+"(.+?)".*', '$1') ; Scrap everything not in speachmarks
+		$refExtracted = StringStripWS($refExtracted, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES) ; Remove fore / aft / double whitespace
+		$refExtracted = StringRegExpReplace($refExtracted, '\.$', '') ; Remove final punctuation from string
 
 		If ($refExtracted = "") Then
 			MsgBox(16, "SRA-Helper", "Sorry but I can't understand that reference format. Make sure 'Annotated' is selected as the reference format")
@@ -140,6 +147,8 @@ Func searchRef($method)
 					; @ifdef MONASH
 					ShellExecute("http://monash.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&vid=MON&vl%281UIStartWith0%29=contains&vl%28freeText0%29=" & $refExtractedURL)
 					; @endif
+				Case "pubmed"
+					ShellExecute("https://www.ncbi.nlm.nih.gov/pubmed/?term=" & $refExtractedURL)
 				Case "clipboard"
 					ClipPut($refExtracted)
 			EndSwitch
@@ -152,7 +161,7 @@ EndFunc
 ; @return Number 0=Not an EndNote window, 1=Is an EndNote list thats maximized, 2=MDI child list
 Func IsEndNoteWindow()
 	Local $title = WinGetTitle("[ACTIVE]")
-	If StringRegExp($title, "^EndNote X7.*\.(?i)enl\]$") Then
+	If StringRegExp($title, "^EndNote X[789] - \[.*\]$") Then
 		Return 1
 	ElseIf $title = "EndNote X7" Then
 		Local $activeChild = _WinAPI_GetWindow(WinGetHandle("[ACTIVE]"), $GW_CHILD)
