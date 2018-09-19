@@ -68,10 +68,10 @@ Func hotKeyPress()
 
 		case "{NUMPADSUB}"
 			searchRef("clipboard")
-			TrayTip("EndNote-Helper", "Copied seach to clipboard", 2, $TIP_ICONASTERISK + $TIP_NOSOUND)
+			TrayTip("SRA-Helper", "Copied seach to clipboard", 2, $TIP_ICONASTERISK + $TIP_NOSOUND)
 
 		Case Else
-			MsgBox(48, "EndNote Helper", "Unknown key sequence: " & @HotKeyPressed)
+			MsgBox(48, "SRA-Helper", "Unknown key sequence: " & @HotKeyPressed)
 	EndSwitch
 EndFunc
 
@@ -116,7 +116,7 @@ Func searchRef($method)
 	Next
 
 	If ($clip == "") Then
-		MsgBox(16, "EndNote-Helper", "EndNote failed to provide a reference when asked. Maybe you don't have anything selected?")
+		MsgBox(16, "SRA-Helper", "EndNote failed to provide a reference when asked. Maybe you don't have anything selected?")
 	Else
 		; Tidy up ref so its just the title
 		Local $refExtracted = StringRegExpReplace($clip, '^.+"(.+?)".*', '$1')
@@ -124,7 +124,7 @@ Func searchRef($method)
 		$refExtracted = StringRegExpReplace($refExtracted, '\s+$', '')
 
 		If ($refExtracted = "") Then
-			MsgBox(16, "EndNote-Helper", "Sorry but I can't understand that reference format. Make sure 'Annotated' is selected as the reference format")
+			MsgBox(16, "SRA-Helper", "Sorry but I can't understand that reference format. Make sure 'Annotated' is selected as the reference format")
 		Else
 			; Make the ref URL ready
 			Local $refExtractedURL = StringReplace($refExtracted, " ", "+")
@@ -172,16 +172,16 @@ Func debug()
 	Local $isEndNote = IsEndNoteWindow()
 
 	If $isEndNote = 0 Then
-		$output &= "Which EndNote-Helper WILL NOT handle"
+		$output &= "Which SRA-Helper WILL NOT handle"
 	ElseIf $isEndNote = 1 Then
-		$output &= "Which EndNote-Helper WILL handle (maximized list view)"
+		$output &= "Which SRA-Helper WILL handle (maximized list view)"
 	ElseIf $isEndNote = 2 Then
-		$output &= "Which EndNote-Helper WILL handle (restored MDI child list view)"
+		$output &= "Which SRA-Helper WILL handle (restored MDI child list view)"
 	Else
-		$output &= "Which EndNote-Helper WILL handle (unknown response)"
+		$output &= "Which SRA-Helper WILL handle (unknown response)"
 	EndIf
 
-	MsgBox(64, "EndNote-Helper", $output)
+	MsgBox(64, "SRA-Helper", $output)
 EndFunc
 
 Func terminate()

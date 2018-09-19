@@ -1,11 +1,11 @@
-EndNote-Helper
-==============
+SRA-Helper
+==========
 
-<p align="center"><a href="https://github.com/CREBP/EndNoteHelper/raw/master/EndNoteHelper.exe">
-  <img src="https://raw.githubusercontent.com/CREBP/EndNoteHelper/master/src/img/download.png" alt="Download EndNote-Helper"/>
+<p align="center"><a href="https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper.exe">
+  <img src="https://raw.githubusercontent.com/CREBP/SRA-Helper/master/src/img/download.png" alt="Download SRA-Helper"/>
 </a></p>
 
-A simple automation script to move references into groups within EndNote.
+A simple helper tool to make EndNote a little easier to use.
 
 This script installs various hotkeys which assist with EndNote reference screening.
 
@@ -22,15 +22,15 @@ Keys
 | `Numpad *`          | Search the refernce title on via Bond Library search    |
 | `Numpad /`          | Search the refernce title on Google Scholar             |
 | `Numpad -`          | Copy a searchable version of the title to the clipboard |
-| `Pause`             | Exit EndNote-Helper                                     |
+| `Pause`             | Exit the SRA-Helper tool                                |
 | `End`               | Debugging information                                   |
 
 
 Installation
 ============
-The simplest way to get EndNote-Helper running is to [download the compiled program](https://github.com/CREBP/EndNoteHelper/raw/master/EndNoteHelper.exe) and run it.
+The simplest way to get SRA-Helper running is to [download the compiled program](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper.exe) and run it.
 
-You will see this icon: ![EndNoteHelper tray icon](src/EndNoteHelper.png) in the system tray when the program is running.
+You will see this icon: ![SRA-Helper tray icon](src/SRA-Helper.png) in the system tray when the program is running.
 
 Simply hit any of the above [keys](#keys) to run that function. The keys will **only** work when viewing an EndNote citation library (no other screen within EndNote). It is recommended that you create the groups before trying to move references to them.
 

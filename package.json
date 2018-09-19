@@ -1,0 +1,24 @@
+{
+  "name": "@crebp/sra-helper",
+  "version": "1.0.0",
+  "description": "Systematic Review Accelerator for EndNote",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CREBP/SRA-Helper.git"
+  },
+  "keywords": [
+    "sra",
+    "endnote",
+    "autoit",
+    "automation",
+    "citation",
+    "library"
+  ],
+  "author": "Matt Carter <m@ttcarter.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CREBP/SRA-Helper/issues"
+  },
+  "homepage": "https://github.com/CREBP/SRA-Helper#readme"
+}
