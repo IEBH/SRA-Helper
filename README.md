@@ -1,7 +1,7 @@
 SRA-Helper
 ==========
 
-<p align="center"><a href="https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper.exe">
+<p align="center"><a href="https://github.com/CREBP/SRA-Helper/raw/master/builds/SRA-Helper-Bond.exe">
   <img src="https://raw.githubusercontent.com/CREBP/SRA-Helper/master/src/img/download.png" alt="Download SRA-Helper"/>
 </a></p>
 
@@ -27,6 +27,7 @@ Keys
 | `End`               | Debugging information                                   |
 
 
+
 Installation
 ============
 The simplest way to get SRA-Helper running is to [download the compiled program](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper.exe) and run it.
@@ -34,6 +35,12 @@ The simplest way to get SRA-Helper running is to [download the compiled program]
 You will see this icon: ![SRA-Helper tray icon](src/SRA-Helper.png) in the system tray when the program is running.
 
 Simply hit any of the above [keys](#keys) to run that function. The keys will **only** work when viewing an EndNote citation library (no other screen within EndNote). It is recommended that you create the groups before trying to move references to them.
+
+
+| Filename                                       | Description                      |
+|------------------------------------------------|----------------------------------|
+| [SRA-Helper-Bond.exe](SRA-Helper-Bond.exe)     | SRA-Helper for Bond University   |
+| [SRA-Helper-Monash.exe](SRA-Helper-Monash.exe) | SRA-Helper for Monash University |
 
 
 Bugs
