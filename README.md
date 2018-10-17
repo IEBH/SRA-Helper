@@ -37,10 +37,10 @@ You will see this icon: ![SRA-Helper tray icon](src/SRA-Helper.png) in the syste
 Simply hit any of the above [keys](#keys) to run that function. The keys will **only** work when viewing an EndNote citation library (no other screen within EndNote). It is recommended that you create the groups before trying to move references to them.
 
 
-| Filename                                       | Description                      |
-|------------------------------------------------|----------------------------------|
-| [SRA-Helper-Bond.exe](SRA-Helper-Bond.exe)     | SRA-Helper for Bond University   |
-| [SRA-Helper-Monash.exe](SRA-Helper-Monash.exe) | SRA-Helper for Monash University |
+| Filename                                                                                      | Description                      |
+|-----------------------------------------------------------------------------------------------|----------------------------------|
+| [SRA-Helper-Bond.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Bond.exe)     | SRA-Helper for Bond University   |
+| [SRA-Helper-Monash.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Monash.exe) | SRA-Helper for Monash University |
 
 
 Bugs
