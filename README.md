@@ -19,8 +19,8 @@ Keys
 | `2` \ `Left arrow`  | Move reference to second group                          |
 | `3` \ `Right arrow` | Move reference to third group                           |
 | `4` \ `0`           | Move reference to fourth group                          |
-| `Numpad *`          | Search the reference title with Bond Library search     |
-| `Numpad /`          | Search the reference title with Google Scholar          |
+| `Numpad /`          | Search the reference title with Bond Library search     |
+| `Numpad *`          | Search the reference title with Google Scholar          |
 | `Numpad -`          | Search the reference title with PubMed                  |
 | `Numpad +`          | Copy a searchable version of the title to the clipboard |
 | `Pause`             | Exit SRA-Helper                                         |
@@ -30,7 +30,7 @@ Keys
 
 Installation
 ============
-The simplest way to get SRA-Helper running is to [download the compiled program](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper.exe) and run it.
+The simplest way to get SRA-Helper running is to [download the compiled program](https://github.com/CREBP/SRA-Helper/raw/master/builds/SRA-Helper-Bond.exe) and run it.
 
 You will see this icon: ![SRA-Helper tray icon](src/SRA-Helper.png) in the system tray when the program is running.
 
@@ -39,8 +39,9 @@ Simply hit any of the above [keys](#keys) to run that function. The keys will **
 
 | Filename                                                                                      | Description                      |
 |-----------------------------------------------------------------------------------------------|----------------------------------|
-| [SRA-Helper-Bond.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Bond.exe)     | SRA-Helper for Bond University   |
-| [SRA-Helper-Monash.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Monash.exe) | SRA-Helper for Monash University |
+| [SRA-Helper-Bond.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Bond.exe)                           | SRA-Helper for Bond University        |
+| [SRA-Helper-Monash.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Monash.exe)                       | SRA-Helper for Monash University        |
+| [SRA-Helper-Queensland-Health.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Queensland-Health.exe) | SRA-Helper for Queensland Health |
 
 
 Bugs
