@@ -1,6 +1,7 @@
 var {spawn} = require('child_process');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var os = require('os');
 var path = require('path');
 var preprocess = require('gulp-preprocess');
 var rename = require('gulp-rename');
@@ -46,59 +47,57 @@ gulp.task('test', ['configure:preprocess'], ()=> {
 /**
 * Build all available versions
 */
-gulp.task('build', ['build:bond', 'build:monash']);
+gulp.task('build', ['build:bond', 'build:monash', 'build:qh']);
 
-/**
-* Compile SRA-Helper in Bond University mode
-*/
-gulp.task('build:bond', ['configure:preprocess'], ()=> {
+
+// Main build pipeline {{{
+var build = (name, context) => {
 	var tempFile = temp.path({prefix: 'SRA-Helper', suffix: 'au3'});
 
+	var cmd = [
+		os.platform == 'linux' ? 'wine' : undefined,
+		'autoit\\Aut2Exe\\Aut2exe.exe',
+		'/in',
+		tempFile,
+		'/out',
+		`..\\builds\\${name}`,
+		'/icon',
+		'SRA-Helper.ico',
+		'/pack'
+	].filter(i => i); // Remove blanks
+
 	return gulp.src('./src/SRA-Helper.au3')
-		.pipe(preprocess({context: {BOND: true}}))
+		.pipe(preprocess({context}))
 		.pipe(rename(path.basename(tempFile)))
 		.pipe(gulp.dest(path.dirname(tempFile)))
 		.on('end', ()=> {
 			gutil.log('Temp file:', tempFile);
-			spawn('wine', [
-				'autoit\\Aut2Exe\\Aut2exe.exe',
-				'/in',
-				tempFile,
-				'/out',
-				'..\\builds\\SRA-Helper-Bond.exe',
-				'/icon',
-				'SRA-Helper.ico',
-				'/pack'
-			], {
+			spawn(cmd.slice(0, 1)[0], cmd.slice(1), {
 				cwd: `${__dirname}/src`,
 			});
 		})
-});
+};
+// }}}
+
+
+/**
+* Compile SRA-Helper in Bond University mode
+*/
+gulp.task('build:bond', ['configure:preprocess'], ()=>
+	build(name = 'SRA-Helper-Bond.exe', context = {BOND: true})
+);
 
 
 /**
 * Compile SRA-Helper in Monash University mode
 */
-gulp.task('build:monash', ['configure:preprocess'], ()=> {
-	var tempFile = temp.path({prefix: 'SRA-Helper', suffix: 'au3'});
+gulp.task('build:monash', ['configure:preprocess'], ()=>
+	build(name = 'SRA-Helper-Monash.exe', context = {MONASH:true})
+);
 
-	return gulp.src('./src/SRA-Helper.au3')
-		.pipe(preprocess({context: {MONASH: true}}))
-		.pipe(rename(path.basename(tempFile)))
-		.pipe(gulp.dest(path.dirname(tempFile)))
-		.on('end', ()=> {
-			gutil.log('Temp file:', tempFile);
-			spawn('wine', [
-				'autoit\\Aut2Exe\\Aut2exe.exe',
-				'/in',
-				tempFile,
-				'/out',
-				'..\\builds\\SRA-Helper-Monash.exe',
-				'/icon',
-				'SRA-Helper.ico',
-				'/pack'
-			], {
-				cwd: `${__dirname}/src`,
-			});
-		})
-});
+/**
+* Compile SRA-Helper in Queensland Health mode
+*/
+gulp.task('build:qh', ['configure:preprocess'], ()=>
+	build(name = 'SRA-Helper-Queensland-Health.exe', context = {QH: true})
+);
