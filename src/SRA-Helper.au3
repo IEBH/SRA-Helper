@@ -147,6 +147,9 @@ Func searchRef($method)
 					; @ifdef MONASH
 					ShellExecute("http://monash.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&vid=MON&vl%281UIStartWith0%29=contains&vl%28freeText0%29=" & $refExtractedURL)
 					; @endif
+					; @ifdef QH
+					ShellExecute("http://qhlibraries.slq.qld.gov.au/primo-explore/jsearch?query=any,contains," & $refExtractedURL & "&tab=jsearch_slot&vid=HHS&lang=en_US&offset=0&journals=any," & $refExtractedURL)
+					; @endif
 				Case "pubmed"
 					ShellExecute("https://www.ncbi.nlm.nih.gov/pubmed/?term=" & $refExtractedURL)
 				Case "clipboard"

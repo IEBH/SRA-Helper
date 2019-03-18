@@ -47,7 +47,7 @@ gulp.task('test', ['configure:preprocess'], ()=> {
 /**
 * Build all available versions
 */
-gulp.task('build', ['build:bond', 'build:monash']);
+gulp.task('build', ['build:bond', 'build:monash', 'build:qh']);
 
 
 // Main build pipeline {{{
@@ -94,3 +94,10 @@ gulp.task('build:bond', ['configure:preprocess'], ()=>
 gulp.task('build:monash', ['configure:preprocess'], ()=>
 	build(name = 'SRA-Helper-Monash.exe', context = {MONASH:true})
 );
+
+/**
+* Compile SRA-Helper in Queensland Health mode
+*/
+gulp.task('build:qh', ['configure:preprocess'], ()=>
+	build(name = 'SRA-Helper-Queensland-Health.exe', context = {QH: true})
+); 
