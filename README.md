@@ -39,9 +39,9 @@ Simply hit any of the above [keys](#keys) to run that function. The keys will **
 
 | Filename                                                                                      | Description                      |
 |-----------------------------------------------------------------------------------------------|----------------------------------|
-| [SRA-Helper-Bond.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Bond.exe)                           | SRA-Helper for Bond University        |
-| [SRA-Helper-Monash.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Monash.exe)                       | SRA-Helper for Monash University        |
-| [SRA-Helper-Queensland-Health.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Queensland-Health.exe) | SRA-Helper for Queensland Health |
+| [SRA-Helper-Bond.exe](https://github.com/CREBP/SRA-Helper/raw/master/builds/SRA-Helper-Bond.exe)                           | SRA-Helper for Bond University   |
+| [SRA-Helper-Monash.exe](https://github.com/CREBP/SRA-Helper/raw/master/builds/SRA-Helper-Monash.exe)                       | SRA-Helper for Monash University |
+| [SRA-Helper-Queensland-Health.exe](https://github.com/CREBP/SRA-Helper/raw/master/builds/SRA-Helper-Queensland-Health.exe) | SRA-Helper for Queensland Health |
 
 
 Bugs
