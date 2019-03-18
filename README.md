@@ -48,6 +48,8 @@ Bugs
 ====
 **CAVEAT EMPTOR**: This tool is really just a key remapper. It applies the various shortcuts within EndNote to manipulate the library as needed. Since its pretty 'hacky' the user should be aware that there *may* be side-effects.
 
+The sub window for the library (small window within endnote) must be maximised in order for the program to function.
+
 If you find any bugs please [contact the developer](mailto:matt_carter@bond.edu.au) and we will do our best to address them.
 
 
