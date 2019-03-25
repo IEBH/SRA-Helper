@@ -19,7 +19,7 @@ Keys
 | `2` \ `Left arrow`  | Move reference to second group                          |
 | `3` \ `Right arrow` | Move reference to third group                           |
 | `4` \ `0`           | Move reference to fourth group                          |
-| `Numpad /`          | Search the reference title with Bond Library search     |
+| `Numpad /`          | Search the reference title with Bond Library/Monash/QH search |
 | `Numpad *`          | Search the reference title with Google Scholar          |
 | `Numpad -`          | Search the reference title with PubMed                  |
 | `Numpad +`          | Copy a searchable version of the title to the clipboard |
@@ -34,7 +34,7 @@ The simplest way to get SRA-Helper running is to [download the compiled program]
 
 You will see this icon: ![SRA-Helper tray icon](src/SRA-Helper.png) in the system tray when the program is running.
 
-Simply hit any of the above [keys](#keys) to run that function. The keys will **only** work when viewing an EndNote citation library (no other screen within EndNote). It is recommended that you create the groups before trying to move references to them.
+Simply hit any of the above [keys](#keys) to run that function. The keys will **only** work when viewing an EndNote citation library (no other screen within EndNote). It is recommended that you create the groups before trying to move references to them. Note: The subwindow (small window) within endnote must be maximized for the program to work.
 
 
 | Filename                                                                                      | Description                      |
