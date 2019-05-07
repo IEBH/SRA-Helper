@@ -142,7 +142,7 @@ Func searchRef($method)
 					ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
 				Case "institution"
 					; @ifdef BOND
-					ShellExecute("http://apac-tc.hosted.exlibrisgroup.com/primo_library/libweb/action/dlSearch.do?institution=61BON&vid=BOND&tab=default_tab&search_scope=all_resources&mode=Basic&displayMode=full&bulkSize=50&highlight=true&dum=true&query=any%2Ccontains%2C" & $refExtractedURL & "&displayField=all&pcAvailabiltyMode=false&s.cmd=addFacetValueFilters(ContentType%2CNewspaper+Article%2Ct%7CContentType%2CBook+Review%2Ct%7CContentType%2CTrade+Publication%2Ct)")
+					ShellExecute("https://librarysearch.bond.edu.au/discovery/search?query=any,contains," & $refExtractedURL & "&tab=Everything&search_scope=Everything&vid=61BOND_INST:BOND&offset=0")
 					; @endif
 					; @ifdef MONASH
 					ShellExecute("http://monash.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&vid=MON&vl%281UIStartWith0%29=contains&vl%28freeText0%29=" & $refExtractedURL)
