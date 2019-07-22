@@ -1,8 +1,8 @@
 SRA-Helper
 ==========
 
-<p align="center"><a href="https://github.com/CREBP/SRA-Helper/raw/master/builds/SRA-Helper-Bond.exe">
-  <img src="https://raw.githubusercontent.com/CREBP/SRA-Helper/master/src/img/download.png" alt="Download SRA-Helper"/>
+<p align="center"><a href="https://github.com/IEBH/SRA-Helper/raw/master/builds/SRA-Helper-Bond.exe">
+  <img src="https://raw.githubusercontent.com/IEBH/SRA-Helper/master/src/img/download.png" alt="Download SRA-Helper"/>
 </a></p>
 
 A simple helper tool to make EndNote a little easier to use.
@@ -30,7 +30,7 @@ Keys
 
 Installation
 ============
-The simplest way to get SRA-Helper running is to [download the compiled program](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper.exe) and run it.
+The simplest way to get SRA-Helper running is to [download the compiled program](https://github.com/IEBH/SRA-Helper/raw/master/SRA-Helper.exe) and run it.
 
 You will see this icon: ![SRA-Helper tray icon](src/SRA-Helper.png) in the system tray when the program is running.
 
@@ -39,8 +39,8 @@ Simply hit any of the above [keys](#keys) to run that function. The keys will **
 
 | Filename                                                                                      | Description                      |
 |-----------------------------------------------------------------------------------------------|----------------------------------|
-| [SRA-Helper-Bond.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Bond.exe)     | SRA-Helper for Bond University   |
-| [SRA-Helper-Monash.exe](https://github.com/CREBP/SRA-Helper/raw/master/SRA-Helper-Monash.exe) | SRA-Helper for Monash University |
+| [SRA-Helper-Bond.exe](https://github.com/IEBH/SRA-Helper/raw/master/SRA-Helper-Bond.exe)     | SRA-Helper for Bond University   |
+| [SRA-Helper-Monash.exe](https://github.com/IEBH/SRA-Helper/raw/master/SRA-Helper-Monash.exe) | SRA-Helper for Monash University |
 
 
 Bugs
@@ -52,4 +52,4 @@ If you find any bugs please [contact the developer](mailto:matt_carter@bond.edu.
 
 Credits
 =======
-Thanks to the [Bond University Center for Research in Evidence-Based Practice](http://www.crebp.net.au), the [Silk icon set](http://www.famfamfam.com/lab/icons/silk) and the [AutoIt](http://autoitscript.com) scripting language.
+Thanks to the [Bond University Institute for Evidence-Based Healthcare](https://iebh.bond.edu.au), the [Silk icon set](http://www.famfamfam.com/lab/icons/silk) and the [AutoIt](http://autoitscript.com) scripting language.
