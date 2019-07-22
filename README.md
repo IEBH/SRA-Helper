@@ -34,13 +34,14 @@ The simplest way to get SRA-Helper running is to [download the compiled program]
 
 You will see this icon: ![SRA-Helper tray icon](src/SRA-Helper.png) in the system tray when the program is running.
 
-Simply hit any of the above [keys](#keys) to run that function. The keys will **only** work when viewing an EndNote citation library (no other screen within EndNote). It is recommended that you create the groups before trying to move references to them.
+Simply hit any of the above [keys](#keys) to run that function. The keys will **only** work when viewing an EndNote citation library (no other screen within EndNote). It is recommended that you create the groups before trying to move references to them. Note: The subwindow (small window) within endnote must be maximized for the program to work.
 
 
 | Filename                                                                                      | Description                      |
 |-----------------------------------------------------------------------------------------------|----------------------------------|
 | [SRA-Helper-Bond.exe](https://github.com/IEBH/SRA-Helper/raw/master/SRA-Helper-Bond.exe)     | SRA-Helper for Bond University   |
 | [SRA-Helper-Monash.exe](https://github.com/IEBH/SRA-Helper/raw/master/SRA-Helper-Monash.exe) | SRA-Helper for Monash University |
+| [SRA-Helper-Queensland-Health.exe](https://github.com/IEBH/SRA-Helper/raw/master/builds/SRA-Helper-Queensland-Health.exe) | SRA-Helper for Queensland Health |
 
 
 Bugs
