@@ -30,7 +30,7 @@ Keys
 
 Installation
 ============
-The simplest way to get SRA-Helper running is to [download the compiled program](https://github.com/IEBH/SRA-Helper/raw/master/SRA-Helper.exe) and run it.
+The simplest way to get SRA-Helper running is to [download the compiled program](./builds/SRA-Helper.exe) and run it.
 
 You will see this icon: ![SRA-Helper tray icon](src/SRA-Helper.png) in the system tray when the program is running.
 
@@ -39,9 +39,9 @@ Simply hit any of the above [keys](#keys) to run that function. The keys will **
 
 | Filename                                                                                      | Description                      |
 |-----------------------------------------------------------------------------------------------|----------------------------------|
-| [SRA-Helper-Bond.exe](https://github.com/IEBH/SRA-Helper/raw/master/SRA-Helper-Bond.exe)     | SRA-Helper for Bond University   |
-| [SRA-Helper-Monash.exe](https://github.com/IEBH/SRA-Helper/raw/master/SRA-Helper-Monash.exe) | SRA-Helper for Monash University |
-| [SRA-Helper-Queensland-Health.exe](https://github.com/IEBH/SRA-Helper/raw/master/builds/SRA-Helper-Queensland-Health.exe) | SRA-Helper for Queensland Health |
+| [SRA-Helper-Bond.exe](./builds/SRA-Helper-Bond.exe)     | SRA-Helper for Bond University   |
+| [SRA-Helper-Monash.exe](./builds/SRA-Helper-Monash.exe) | SRA-Helper for Monash University |
+| [SRA-Helper-Queensland-Health.exe](./builds/SRA-Helper-Queensland-Health.exe) | SRA-Helper for Queensland Health |
 
 
 Bugs
