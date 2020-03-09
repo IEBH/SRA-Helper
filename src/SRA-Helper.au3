@@ -102,7 +102,7 @@ Func moveToGroup($groupNo)
 
 	sleep(100)
 	_SendMessage($endNoteHwnd, $WM_SETREDRAW, 1) ; Unlock redrawing of the window
-	_WinAPI_RedrawWindow($endNoteHwnd, 0, 0, BitOr($RDW_ERASE, $RDW_FRAME, $RDW_INVALIDATE, $RDW_ALLCHILDREN)) ; Force total window repaint
+	_WinAPI_RedrawWindow($endNoteHwnd, 0, 0, BitOr($RDW_INVALIDATE, $RDW_ALLCHILDREN, $RDW_ERASENOW)) ; Force total window repaint
 EndFunc
 
 Func searchRef($method)
