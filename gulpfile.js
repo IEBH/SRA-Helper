@@ -1,4 +1,4 @@
-var {spawn} = require('child_process');
+var exec = require('@momsfriendlydevco/exec');
 var gulp = require('@momsfriendlydevco/gulpy');
 var gutil = require('gulp-util');
 var os = require('os');
@@ -37,7 +37,7 @@ gulp.task('test', ['configure:preprocess'], ()=> {
 		.pipe(gulp.dest(path.dirname(tempFile)))
 		.on('end', ()=> {
 			gutil.log('Temp file:', tempFile);
-			spawn('wine', ['autoit/AutoIt3.exe', tempFile], {
+			return exec(['wine', 'autoit/AutoIt3.exe', tempFile], {
 				cwd: `${__dirname}/src`,
 			});
 		})
@@ -52,19 +52,7 @@ gulp.task('build', ['build:bond', 'build:monash', 'build:qh']);
 
 // Main build pipeline {{{
 var build = (name, context) => {
-	var tempFile = temp.path({prefix: 'SRA-Helper', suffix: 'au3'});
-
-	var cmd = [
-		os.platform == 'linux' ? 'wine' : undefined,
-		'autoit\\Aut2Exe\\Aut2exe.exe',
-		'/in',
-		tempFile,
-		'/out',
-		`..\\builds\\${name}`,
-		'/icon',
-		'SRA-Helper.ico',
-		'/pack'
-	].filter(i => i); // Remove blanks
+	var tempFile = temp.path({prefix: 'SRA-Helper', suffix: '.au3'});
 
 	return gulp.src('./src/SRA-Helper.au3')
 		.pipe(preprocess({context}))
@@ -72,9 +60,19 @@ var build = (name, context) => {
 		.pipe(gulp.dest(path.dirname(tempFile)))
 		.on('end', ()=> {
 			gutil.log('Temp file:', tempFile);
-			spawn(cmd.slice(0, 1)[0], cmd.slice(1), {
+			return exec([
+				os.platform == 'linux' ? 'wine' : undefined,
+				'autoit\\Aut2Exe\\Aut2exe.exe',
+				'/in',
+				tempFile,
+				'/out',
+				`..\\builds\\${name}`,
+				'/icon',
+				'SRA-Helper.ico',
+				'/pack'
+			].filter(i => i), {
 				cwd: `${__dirname}/src`,
-			});
+			})
 		})
 };
 // }}}

@@ -25,6 +25,7 @@
     "node": ">= 12.14.1"
   },
   "devDependencies": {
+    "@momsfriendlydevco/exec": "^1.5.0",
     "@momsfriendlydevco/gulpy": "^1.4.1",
     "gulp": "^4.0.2",
     "gulp-preprocess": "^3.0.3",
