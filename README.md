@@ -54,3 +54,7 @@ If you find any bugs please [contact the developer](mailto:matt_carter@bond.edu.
 Credits
 =======
 Thanks to the [Bond University Institute for Evidence-Based Healthcare](https://iebh.bond.edu.au), the [Silk icon set](http://www.famfamfam.com/lab/icons/silk) and the [AutoIt](http://autoitscript.com) scripting language.
+
+Certificate Signing
+===================
+signtool sign /f "PATH_TO_CERTIFICATE" /p PASSWORD SRA-Helper-Bond.exe
