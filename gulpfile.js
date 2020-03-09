@@ -1,5 +1,5 @@
 var {spawn} = require('child_process');
-var gulp = require('gulp');
+var gulp = require('@momsfriendlydevco/gulpy');
 var gutil = require('gulp-util');
 var os = require('os');
 var path = require('path');
@@ -100,4 +100,4 @@ gulp.task('build:monash', ['configure:preprocess'], ()=>
 */
 gulp.task('build:qh', ['configure:preprocess'], ()=>
 	build(name = 'SRA-Helper-Queensland-Health.exe', context = {QH: true})
-); 
+);
