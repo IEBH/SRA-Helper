@@ -5,6 +5,8 @@ SRA-Helper
   <img src="https://raw.githubusercontent.com/IEBH/SRA-Helper/master/src/img/download.png" alt="Download SRA-Helper"/>
 </a></p>
 
+(or read [what do I do if SRA-Helper doesn't run / gets flagged as a virus?](#troubleshooting))
+
 A simple helper tool to make EndNote a little easier to use.
 
 This script installs various hotkeys which assist with EndNote reference screening.
@@ -44,6 +46,18 @@ Simply hit any of the above [keys](#keys) to run that function. The keys will **
 | [SRA-Helper-Queensland-Health.exe](./builds/SRA-Helper-Queensland-Health.exe) | SRA-Helper for Queensland Health |
 
 
+Troubleshooting
+===============
+Unfortunately for reasons outside of our control, Microsoft can occasionally flag this project as a virus. This is probably because the SRA-Helper tool remaps a couple of keys which can seem like viral activity to some virus scanners.
+
+To work around this:
+
+1. Download the [SRA-Helper project as a zip file](https://github.com/IEBH/SRA-Helper/archive/master.zip)
+2. Unzip this file and folders somewhere on your computer
+3. To run, double click on the `SRA-Helper.bat` file in that directory
+
+
+
 Bugs
 ====
 **CAVEAT EMPTOR**: This tool is really just a key remapper. It applies the various shortcuts within EndNote to manipulate the library as needed. Since its pretty 'hacky' the user should be aware that there *may* be side-effects.
@@ -55,6 +69,14 @@ Credits
 =======
 Thanks to the [Bond University Institute for Evidence-Based Healthcare](https://iebh.bond.edu.au), the [Silk icon set](http://www.famfamfam.com/lab/icons/silk) and the [AutoIt](http://autoitscript.com) scripting language.
 
-Certificate Signing
-===================
+
+Build from source
+=================
+
+```
+// Run gulp to build all .exe files
+gulp build
+
+// Sign the exe files using
 signtool sign /f "PATH_TO_CERTIFICATE" /p PASSWORD SRA-Helper-Bond.exe
+```
