@@ -141,15 +141,19 @@ Func searchRef($method)
 				Case "scholar"
 					ShellExecute("https://scholar.google.com/scholar?q=" & $refExtractedURL)
 				Case "institution"
-					; @ifdef BOND
-					ShellExecute("https://librarysearch.bond.edu.au/discovery/search?query=any%2Ccontains%2C" & $refExtractedURL & "&tab=Everything&search_scope=Everything&vid=61BOND_INST%3ABOND&offset=0")
-					; @endif
+					Local $localUrl = "";
 					; @ifdef MONASH
-					ShellExecute("http://monash.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&vid=MON&vl%281UIStartWith0%29=contains&vl%28freeText0%29=" & $refExtractedURL)
+					$localUrl = "http://monash.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&vid=MON&vl%281UIStartWith0%29=contains&vl%28freeText0%29=" & $refExtractedURL
 					; @endif
 					; @ifdef QH
-					ShellExecute("http://qhlibraries.slq.qld.gov.au/primo-explore/jsearch?query=any,contains," & $refExtractedURL & "&tab=jsearch_slot&vid=HHS&lang=en_US&offset=0&journals=any," & $refExtractedURL)
+					$localUrl = "http://qhlibraries.slq.qld.gov.au/primo-explore/jsearch?query=any,contains," & $refExtractedURL & "&tab=jsearch_slot&vid=HHS&lang=en_US&offset=0&journals=any," & $refExtractedURL
 					; @endif
+
+					; Fall through to defaulting to Bond if we're in debug mode (i.e. no pre-process step)
+					; @ifdef BOND
+					$localUrl = "https://librarysearch.bond.edu.au/discovery/search?query=any%2Ccontains%2C" & $refExtractedURL & "&tab=Everything&search_scope=Everything&vid=61BOND_INST%3ABOND&offset=0"
+					; @endif
+					ShellExecute($localUrl)
 				Case "pubmed"
 					ShellExecute("https://www.ncbi.nlm.nih.gov/pubmed/?term=" & $refExtractedURL)
 				Case "clipboard"
