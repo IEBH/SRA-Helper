@@ -1,0 +1,38 @@
+{
+  "name": "SRA-Helper",
+  "version": "1.0.0",
+  "description": "Systematic Review Accelerator for EndNote",
+  "assets": {
+    "logo": "logo.svg"
+  },
+  "keywords": [
+    "endnote",
+    "screening"
+  ],
+  "author": "Matt Carter <m@ttcarter.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IEBH/SRA-Helper/issues"
+  },
+  "homepage": "https://github.com/IEBH/SRA-Helper#readme",
+  "inputs": [
+    {
+      "type": "references",
+      "format": "endnotexml",
+      "filename": "SRA-Helper-ToScreen.xml"
+    }
+  ],
+  "config": [
+    {
+      "type": "mgHtml",
+      "text": "<p>The SRA-Helper is an addon tool for <a href='https://endnote.com' target='_blank'>EndNote</a> which provides a number of hotkeys for easier screening on your own PC</p>\n<p>To use the SRA-Helper:\n<ol>\n<li><a href='https://github.com/IEBH/SRA-Helper#installation' target='_blank'>install the SRA-Helper program</a> on your PC</li>\n<li>Open the library you want to screen with EndNote</li>\n<li>Use the <a href='https://github.com/IEBH/SRA-Helper#keys' target='_blank'>hotkeys</a> to screen your library</li>\n<li>Upload the screened library back into the SRA</li>\n</ol>\n</p>"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "references",
+      "format": "endnotexml",
+      "filename": "SRA-Helper-Screened.xml"
+    }
+  ]
+}
